@@ -1,3 +1,5 @@
---- Rosalind.factor ---
+# Rosalind.factor #
 
-Solutions to the problems given at [Rosalind Beta](rosalind.info).
+Solutions to the problems given at [Rosalind Beta](http://rosalind.info).
+
+## Details ##

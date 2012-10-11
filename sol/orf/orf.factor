@@ -1,9 +1,9 @@
 !
 !
 
-USING: ;
+USING: rosalind ;
 IN: rosalind.sol.orf
 
-: rosalind-orf ( -- ) ;
+: rosalind-orf ( -- ) dna>pro* ;
 
 MAIN: rosalind-orf

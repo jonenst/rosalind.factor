@@ -121,22 +121,24 @@ PRIVATE>
     dup "AUG" head? [ codon>amino* ] when
 ;
 
-: dna>pro ( dna -- pro-v )
-    dup rev-compliment
-    [ dna>rna dup "AUG" motifs
-      swap [ swap 1 - tail-slice rna>pro ] curry map
-      [ ] filter!
-    ] bi@
-    append members
+: rna>pro* ( rna -- pro* )
+    dup "AUG" motifs swap [ swap tail-slice rna>pro ] curry map
+;
+
+: dna>pro ( dna -- pro/f )
+    dna>rna rna>pro
+;
+
+: dna>pro* ( dna -- pro* )
+    dup rev-compliment [ dna>rna rna>pro* [ ] filter! ] bi@ append members
 ;
 
 
 : splice ( dna introns -- pro )
     swap
-    [ 2dup motifs first 1 - swap length over + [ over ] dip 
+    [ 2dup motifs first swap length over + [ over ] dip 
       [ head-slice ] [ tail-slice ] 2bi* append
     ] reduce
-    dna>rna rna>pro
 ;
 
 : hamming ( dna dna -- hamming )

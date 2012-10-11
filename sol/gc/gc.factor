@@ -1,12 +1,14 @@
 !
 !
 
-USING: kernel io math.parser math.functions sequences rosalind rosalind.fasta ;
+USING: kernel io math math.parser math.functions sequences assocs
+       rosalind rosalind.fasta rosalind.util ;
 IN: rosalind.sol.gc
 
-: rosalind-gc ( -- ) 
-    read-fasta dup [ gc-content ] map
-    argsup* [ swap nth print nl ] dip .01 floor-to float>string print nl
+: rosalind-gc ( -- )
+    read-fasta dup keys dup [ gc-content ] map argsup* 
+    [ swap nth swap at print ] dip 
+    100 * .01 round-to float>string "%" append print
 ;
 
 MAIN: rosalind-gc
